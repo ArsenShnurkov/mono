@@ -565,7 +565,15 @@ namespace System.Configuration {
 				rootGroup.ReadConfig (this, fileName, reader);
 			}
 			
-			rootGroup.ReadRootData (reader, this, true);
+			try
+			{
+				rootGroup.ReadRootData (reader, this, true);
+			}
+			catch (Exception ex)
+			{
+				string msg = string.Format ("Error while reading file {0}", fileName);
+				throw new Exception (msg, ex);
+			}
 		}
 
 		internal void ReadData (XmlReader reader, bool allowOverride)
