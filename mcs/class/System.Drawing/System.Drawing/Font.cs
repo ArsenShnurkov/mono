@@ -40,7 +40,7 @@ namespace System.Drawing
 {
 	[Serializable]
 	[ComVisible (true)]
-	[Editor ("System.Drawing.Design.FontEditor, " + Consts.AssemblySystem_Drawing_Design, typeof (System.Drawing.Design.UITypeEditor))]
+	//[Editor ("System.Drawing.Design.FontEditor, " + Consts.AssemblySystem_Drawing_Design, typeof (System.Drawing.Design.UITypeEditor))]
 	[TypeConverter (typeof (FontConverter))]
 	public sealed class Font : MarshalByRefObject, ISerializable, ICloneable, IDisposable
 	{
@@ -447,7 +447,7 @@ namespace System.Drawing
 		private string _name;
 
 		[DesignerSerializationVisibility (DesignerSerializationVisibility.Hidden)]
-		[Editor ("System.Drawing.Design.FontNameEditor, " + Consts.AssemblySystem_Drawing_Design, typeof (System.Drawing.Design.UITypeEditor))]
+		//[Editor ("System.Drawing.Design.FontNameEditor, " + Consts.AssemblySystem_Drawing_Design, typeof (System.Drawing.Design.UITypeEditor))]
 		[TypeConverter (typeof (FontConverter.FontNameConverter))]
 		public string Name {
 			get {
@@ -554,13 +554,13 @@ namespace System.Drawing
 			return _hashCode;
 		}
 
-		[MonoTODO ("The hdc parameter has no direct equivalent in libgdiplus.")]
+		//[MonoTODO ("The hdc parameter has no direct equivalent in libgdiplus.")]
 		public static Font FromHdc (IntPtr hdc)
 		{
 			throw new NotImplementedException ();
 		}
 
-		[MonoTODO ("The returned font may not have all it's properties initialized correctly.")]
+		//[MonoTODO ("The returned font may not have all it's properties initialized correctly.")]
 		public static Font FromLogFont (object lf, IntPtr hdc)
 		{
 			IntPtr newObject;

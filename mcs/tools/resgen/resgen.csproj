@@ -1,23 +1,525 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <ProjectGuid>{09BA8FF8-17C7-40B9-ABF5-B24E07396AB2}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <AssemblyName>resgen</AssemblyName>
     <ResponseFile>$(MSBuildProjectName).exe.sources</ResponseFile>
     <CodePage>65001</CodePage>
     <OutputPath>..\..\class\lib\net_2_0_bootstrap\</OutputPath>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <DefineConstants>NET_4_5</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'net_2_0_bootstrap|AnyCPU' ">
-    <DefineConstants>NET_1_1,NET_2_0</DefineConstants>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NET_4_5</DefineConstants>
+    <Commandlineparameters>/var/calculate/remote/distfiles/egit-src/NClass.git/src/DiagramEditor/Properties/Resources.resx</Commandlineparameters>
+    <DebugSymbols>true</DebugSymbols>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Execute" command="${TargetFile} /var/calculate/remote/distfiles/egit-src/NClass.git/src/DiagramEditor/Properties/Resources.resx" workingdir="/var/calculate/remote/distfiles/egit-src/NClass.git/src/DiagramEditor/Properties" />
+      </CustomCommands>
+    </CustomCommands>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>TRACE;NET_4_5</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
   </ItemGroup>
-  <Import Project="$(MSBuildProjectDirectory)\..\..\build\msbuild\Mono.Common.targets"/>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!--
+  <Import Project="../../build/msbuild/Mono.Common.targets" />
+-->
+  <Import Project="$(MSBuildBinPath)/Microsoft.CSharp.targets" />
+  <!--
   <Target Name="BeforeBuild" DependsOnTargets="SetupProject">
   </Target>
+-->
+  <ItemGroup>
+    <Compile Include="monoresgen.cs" />
+    <Compile Include="..\..\build\common\Locale.cs">
+      <Link>Locale.cs</Link>
+    </Compile>
+    <Compile Include="Consts.cs" />
+    <Compile Include="..\..\class\System.Windows.Forms\System.Resources\ResXResourceReader.cs">
+      <Link>ResX\ResXResourceReader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Windows.Forms\System.Resources\ResXDataNode.cs">
+      <Link>ResX\ResXDataNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Windows.Forms\System.Resources\ResXDataNodeHandler.cs">
+      <Link>ResX\ResXDataNodeHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Windows.Forms\System.Resources\ResXFileRef.cs">
+      <Link>ResX\ResXFileRef.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Windows.Forms\System.Resources\TypeConverterFromResXHandler.cs">
+      <Link>ResX\TypeConverterFromResXHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Windows.Forms\System.Resources\ResXResourceWriter.cs">
+      <Link>ResX\ResXResourceWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Windows.Forms\System.Resources\ResXNullRef.cs">
+      <Link>ResX\ResXNullRef.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Windows.Forms\System.Resources\FileRefHandler.cs">
+      <Link>ResX\FileRefHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Windows.Forms\System.Resources\InMemoryHandler.cs">
+      <Link>ResX\InMemoryHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Windows.Forms\System.Resources\SerializedFromResXHandler.cs">
+      <Link>ResX\SerializedFromResXHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Windows.Forms\System.Resources\AssemblyNamesTypeResolutionService.cs">
+      <Link>ResX\AssemblyNamesTypeResolutionService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Windows.Forms\System.Resources\NullRefHandler.cs">
+      <Link>ResX\NullRefHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Windows.Forms\System.Resources\ByteArrayFromResXHandler.cs">
+      <Link>ResX\ByteArrayFromResXHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Bitmap.cs">
+      <Link>System.Drawing\Bitmap.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Image.cs">
+      <Link>System.Drawing\Image.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\gdipStructs.cs">
+      <Link>System.Drawing\gdipStructs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\gdipFunctions.cs">
+      <Link>System.Drawing\gdipFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\gdipEnums.cs">
+      <Link>System.Drawing\gdipEnums.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\PixelFormat.cs">
+      <Link>System.Drawing.Imaging\PixelFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\RectangleF.cs">
+      <Link>System.Drawing\RectangleF.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\GraphicsUnit.cs">
+      <Link>System.Drawing\GraphicsUnit.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\SizeF.cs">
+      <Link>System.Drawing\SizeF.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Graphics.cs">
+      <Link>System.Drawing\Graphics.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\PixelOffsetMode.cs">
+      <Link>System.Drawing.Drawing2D\PixelOffsetMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\IDeviceContext.cs">
+      <Link>System.Drawing\IDeviceContext.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\Encoder.cs">
+      <Link>System.Drawing.Imaging\Encoder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\EncoderParameter.cs">
+      <Link>System.Drawing.Imaging\EncoderParameter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\EncoderParameters.cs">
+      <Link>System.Drawing.Imaging\EncoderParameters.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\EncoderParameterValueType.cs">
+      <Link>System.Drawing.Imaging\EncoderParameterValueType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\EncoderValue.cs">
+      <Link>System.Drawing.Imaging\EncoderValue.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\FrameDimension.cs">
+      <Link>System.Drawing.Imaging\FrameDimension.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\PropertyItem.cs">
+      <Link>System.Drawing.Imaging\PropertyItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\RotateFlipType.cs">
+      <Link>System.Drawing\RotateFlipType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ImageAttributes.cs">
+      <Link>System.Drawing.Imaging\ImageAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ImageCodecFlags.cs">
+      <Link>System.Drawing.Imaging\ImageCodecFlags.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ImageCodecInfo.cs">
+      <Link>System.Drawing.Imaging\ImageCodecInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ImageFlags.cs">
+      <Link>System.Drawing.Imaging\ImageFlags.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ImageFormat.cs">
+      <Link>System.Drawing.Imaging\ImageFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ImageLockMode.cs">
+      <Link>System.Drawing.Imaging\ImageLockMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Point.cs">
+      <Link>System.Drawing\Point.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\PointConverter.cs">
+      <Link>System.Drawing\PointConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Size.cs">
+      <Link>System.Drawing\Size.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\SizeConverter.cs">
+      <Link>System.Drawing\SizeConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\SizeFConverter.cs">
+      <Link>System.Drawing\SizeFConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Color.cs">
+      <Link>System.Drawing\Color.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\ColorConverter.cs">
+      <Link>System.Drawing\ColorConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\BitmapData.cs">
+      <Link>System.Drawing.Imaging\BitmapData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ColorAdjustType.cs">
+      <Link>System.Drawing.Imaging\ColorAdjustType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ColorChannelFlag.cs">
+      <Link>System.Drawing.Imaging\ColorChannelFlag.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ColorMap.cs">
+      <Link>System.Drawing.Imaging\ColorMap.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ColorMapType.cs">
+      <Link>System.Drawing.Imaging\ColorMapType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ColorMatrix.cs">
+      <Link>System.Drawing.Imaging\ColorMatrix.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ColorMatrixFlag.cs">
+      <Link>System.Drawing.Imaging\ColorMatrixFlag.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ColorMode.cs">
+      <Link>System.Drawing.Imaging\ColorMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\ColorPalette.cs">
+      <Link>System.Drawing.Imaging\ColorPalette.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\Metafile.cs">
+      <Link>System.Drawing\Metafile.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\MetafileFrameUnit.cs">
+      <Link>System.Drawing\MetafileFrameUnit.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\MetafileHeader.cs">
+      <Link>System.Drawing\MetafileHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\MetafileType.cs">
+      <Link>System.Drawing\MetafileType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\MetaHeader.cs">
+      <Link>System.Drawing\MetaHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\PaletteFlags.cs">
+      <Link>System.Drawing\PaletteFlags.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Rectangle.cs">
+      <Link>System.Drawing\Rectangle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\RectangleConverter.cs">
+      <Link>System.Drawing\RectangleConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\PointF.cs">
+      <Link>System.Drawing\PointF.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\CombineMode.cs">
+      <Link>System.Drawing.Drawing2D\CombineMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\AdjustableArrowCap.cs">
+      <Link>System.Drawing.Drawing2D\AdjustableArrowCap.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\Blend.cs">
+      <Link>System.Drawing.Drawing2D\Blend.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\ColorBlend.cs">
+      <Link>System.Drawing.Drawing2D\ColorBlend.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\CompostingMode.cs">
+      <Link>System.Drawing.Drawing2D\CompostingMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\CompostingQuality.cs">
+      <Link>System.Drawing.Drawing2D\CompostingQuality.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\CoordinateSpace.cs">
+      <Link>System.Drawing.Drawing2D\CoordinateSpace.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\CustomLineCap.cs">
+      <Link>System.Drawing.Drawing2D\CustomLineCap.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\DashCap.cs">
+      <Link>System.Drawing.Drawing2D\DashCap.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\DashStyle.cs">
+      <Link>System.Drawing.Drawing2D\DashStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\FillMode.cs">
+      <Link>System.Drawing.Drawing2D\FillMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\FlushIntention.cs">
+      <Link>System.Drawing.Drawing2D\FlushIntention.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\GraphicsContainer.cs">
+      <Link>System.Drawing.Drawing2D\GraphicsContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\GraphicsPath.cs">
+      <Link>System.Drawing.Drawing2D\GraphicsPath.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\GraphicsPathIterator.cs">
+      <Link>System.Drawing.Drawing2D\GraphicsPathIterator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\GraphicsState.cs">
+      <Link>System.Drawing.Drawing2D\GraphicsState.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\HatchBrush.cs">
+      <Link>System.Drawing.Drawing2D\HatchBrush.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\HatchStyle.cs">
+      <Link>System.Drawing.Drawing2D\HatchStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\InterpolationMode.cs">
+      <Link>System.Drawing.Drawing2D\InterpolationMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\LinearGradientBrush.cs">
+      <Link>System.Drawing.Drawing2D\LinearGradientBrush.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\LinearGradientMode.cs">
+      <Link>System.Drawing.Drawing2D\LinearGradientMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\LineCap.cs">
+      <Link>System.Drawing.Drawing2D\LineCap.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\LineJoin.cs">
+      <Link>System.Drawing.Drawing2D\LineJoin.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\Matrix.cs">
+      <Link>System.Drawing.Drawing2D\Matrix.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\MatrixOrder.cs">
+      <Link>System.Drawing.Drawing2D\MatrixOrder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\PathData.cs">
+      <Link>System.Drawing.Drawing2D\PathData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\PathGradientBrush.cs">
+      <Link>System.Drawing.Drawing2D\PathGradientBrush.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\PathPointType.cs">
+      <Link>System.Drawing.Drawing2D\PathPointType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\PenAlignment.cs">
+      <Link>System.Drawing.Drawing2D\PenAlignment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\PenType.cs">
+      <Link>System.Drawing.Drawing2D\PenType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\QualityMode.cs">
+      <Link>System.Drawing.Drawing2D\QualityMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\RegionData.cs">
+      <Link>System.Drawing.Drawing2D\RegionData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\SmoothingMode.cs">
+      <Link>System.Drawing.Drawing2D\SmoothingMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\WarpMode.cs">
+      <Link>System.Drawing.Drawing2D\WarpMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Drawing2D\WrapMode.cs">
+      <Link>System.Drawing.Drawing2D\WrapMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Brush.cs">
+      <Link>System.Drawing\Brush.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Brushes.cs">
+      <Link>System.Drawing\Brushes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\BufferedGraphics.cs">
+      <Link>System.Drawing\BufferedGraphics.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\BufferedGraphicsContext.cs">
+      <Link>System.Drawing\BufferedGraphicsContext.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\BufferedGraphicsManager.cs">
+      <Link>System.Drawing\BufferedGraphicsManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\CharacterRange.cs">
+      <Link>System.Drawing\CharacterRange.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\ColorTranslator.cs">
+      <Link>System.Drawing\ColorTranslator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\ComIStreamMarshaler.cs">
+      <Link>System.Drawing\ComIStreamMarshaler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\ComIStreamWrapper.cs">
+      <Link>System.Drawing\ComIStreamWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\ContentAlignment.cs">
+      <Link>System.Drawing\ContentAlignment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\CopyPixelOperation.cs">
+      <Link>System.Drawing\CopyPixelOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Font.cs">
+      <Link>System.Drawing\Font.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\FontConverter.cs">
+      <Link>System.Drawing\FontConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\FontFamily.cs">
+      <Link>System.Drawing\FontFamily.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\FontStyle.cs">
+      <Link>System.Drawing\FontStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Icon.cs">
+      <Link>System.Drawing\Icon.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\IconConverter.cs">
+      <Link>System.Drawing\IconConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\ImageAnimator.cs">
+      <Link>System.Drawing\ImageAnimator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\ImageConverter.cs">
+      <Link>System.Drawing\ImageConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\ImageFormatConverter.cs">
+      <Link>System.Drawing\ImageFormatConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\KnownColor.cs">
+      <Link>System.Drawing\KnownColor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\KnownColors.cs">
+      <Link>System.Drawing\KnownColors.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\macFunctions.cs">
+      <Link>System.Drawing\macFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Pen.cs">
+      <Link>System.Drawing\Pen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Pens.cs">
+      <Link>System.Drawing\Pens.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\Region.cs">
+      <Link>System.Drawing\Region.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\SolidBrush.cs">
+      <Link>System.Drawing\SolidBrush.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\SRDescriptionAttribute.cs">
+      <Link>System.Drawing\SRDescriptionAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\StringAligment.cs">
+      <Link>System.Drawing\StringAligment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\StringDigitSubstitute.cs">
+      <Link>System.Drawing\StringDigitSubstitute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\StringFormat.cs">
+      <Link>System.Drawing\StringFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\StringFormatFlags.cs">
+      <Link>System.Drawing\StringFormatFlags.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\StringTrimming.cs">
+      <Link>System.Drawing\StringTrimming.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\StringUnit.cs">
+      <Link>System.Drawing\StringUnit.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\SystemBrushes.cs">
+      <Link>System.Drawing\SystemBrushes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\SystemColors.cs">
+      <Link>System.Drawing\SystemColors.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\SystemFonts.cs">
+      <Link>System.Drawing\SystemFonts.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\SystemIcons.cs">
+      <Link>System.Drawing\SystemIcons.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\SystemPens.cs">
+      <Link>System.Drawing\SystemPens.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\TextureBrush.cs">
+      <Link>System.Drawing\TextureBrush.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing\ToolboxBitmapAttribute.cs">
+      <Link>System.Drawing\ToolboxBitmapAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Text\FontCollection.cs">
+      <Link>System.Drawing.Text\FontCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Text\GenericFontFamilies.cs">
+      <Link>System.Drawing.Text\GenericFontFamilies.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Text\HotkeyPrefix.cs">
+      <Link>System.Drawing.Text\HotkeyPrefix.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Text\InstalledFontCollection.cs">
+      <Link>System.Drawing.Text\InstalledFontCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Text\PrivateFontCollection.cs">
+      <Link>System.Drawing.Text\PrivateFontCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Text\TextRenderingHint.cs">
+      <Link>System.Drawing.Text\TextRenderingHint.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\EmfPlusRecordType.cs">
+      <Link>System.Drawing.Imaging\EmfPlusRecordType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\EmfType.cs">
+      <Link>System.Drawing.Imaging\EmfType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\PlayRecordCallback.cs">
+      <Link>System.Drawing.Imaging\PlayRecordCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\..\class\System.Drawing\System.Drawing.Imaging\WmfPlaceableFileHeader.cs">
+      <Link>System.Drawing.Imaging\WmfPlaceableFileHeader.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resgen.exe.sources" />
+    <None Include="..\..\..\..\NClass.git\src\DiagramEditor\Properties\Resources.resx">
+      <Link>Resources.resx</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ResX\" />
+    <Folder Include="System.Drawing\" />
+    <Folder Include="System.Drawing.Imaging\" />
+    <Folder Include="System.Drawing.Drawing2D\" />
+    <Folder Include="System.Drawing.Text\" />
+  </ItemGroup>
 </Project>

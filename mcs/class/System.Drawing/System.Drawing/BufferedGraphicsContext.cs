@@ -53,7 +53,7 @@ namespace System.Drawing
 			return graphics;			
 		}
 
-		[MonoTODO ("The targetDC parameter has no equivalent in libgdiplus.")]
+		//[MonoTODO ("The targetDC parameter has no equivalent in libgdiplus.")]
 		[SecurityPermission (SecurityAction.Demand, UnmanagedCode = true)]
 		public BufferedGraphics Allocate (IntPtr targetDC, Rectangle targetRectangle)
 		{

@@ -162,7 +162,7 @@ namespace System.Drawing {
 			return (int) outProperty;
 		}
 
-		[MonoDocumentationNote ("When used with libgdiplus this method always return true (styles are created on demand).")]
+		//[MonoDocumentationNote ("When used with libgdiplus this method always return true (styles are created on demand).")]
 		public bool IsStyleAvailable (FontStyle style)
 		{
 			bool outProperty;
@@ -211,7 +211,7 @@ namespace System.Drawing {
 			return fntcol.Families;			
 		}
 		
-		[MonoLimitation ("The language parameter is ignored. We always return the name using the default system language.")]
+		//[MonoLimitation ("The language parameter is ignored. We always return the name using the default system language.")]
 		public string GetName (int language)
 		{
 			return Name;

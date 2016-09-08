@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "resgen", "resgen.csproj", "{09BA8FF8-17C7-40B9-ABF5-B24E07396AB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09BA8FF8-17C7-40B9-ABF5-B24E07396AB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09BA8FF8-17C7-40B9-ABF5-B24E07396AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09BA8FF8-17C7-40B9-ABF5-B24E07396AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09BA8FF8-17C7-40B9-ABF5-B24E07396AB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

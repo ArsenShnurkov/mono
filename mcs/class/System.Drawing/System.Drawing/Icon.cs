@@ -44,7 +44,7 @@ namespace System.Drawing
 {
 	[Serializable]	
 #if !MONOTOUCH
-	[Editor ("System.Drawing.Design.IconEditor, " + Consts.AssemblySystem_Drawing_Design, typeof (System.Drawing.Design.UITypeEditor))]
+	//[Editor ("System.Drawing.Design.IconEditor, " + Consts.AssemblySystem_Drawing_Design, typeof (System.Drawing.Design.UITypeEditor))]
 #endif
 	[TypeConverter(typeof(IconConverter))]
 
@@ -299,7 +299,7 @@ namespace System.Drawing
 			}
 		}
 
-		[MonoLimitation ("The same icon, SystemIcons.WinLogo, is returned for all file types.")]
+		//[MonoLimitation ("The same icon, SystemIcons.WinLogo, is returned for all file types.")]
 		public static Icon ExtractAssociatedIcon (string filePath)
 		{
 			if (String.IsNullOrEmpty (filePath))

@@ -68,7 +68,7 @@ namespace System.Drawing {
 			GDIPlus.CheckStatus (status);
 		}
 
-		[MonoLimitation ("ImageAttributes are ignored when using libgdiplus")]
+		//[MonoLimitation ("ImageAttributes are ignored when using libgdiplus")]
 		public TextureBrush (Image image, Rectangle dstRect, ImageAttributes imageAttr)
 		{
 			if (image == null)
@@ -80,7 +80,7 @@ namespace System.Drawing {
 			GDIPlus.CheckStatus (status);
 		}
 
-		[MonoLimitation ("ImageAttributes are ignored when using libgdiplus")]
+		//[MonoLimitation ("ImageAttributes are ignored when using libgdiplus")]
 		public TextureBrush (Image image, RectangleF dstRect, ImageAttributes imageAttr)
 		{	
 			if (image == null)

@@ -98,9 +98,27 @@ namespace System.Resources {
 				if (type == typeof (MemoryStream))
 					return new MemoryStream (buffer);
 
-				return Activator.CreateInstance(type, BindingFlags.CreateInstance
-					| BindingFlags.Public | BindingFlags.Instance, null, 
-					new object[] { new MemoryStream (buffer) }, culture);
+				object res = null;
+				if ("System.Drawing.Bitmap".CompareTo(type.FullName) != 0) {
+					res = Activator.CreateInstance (type, BindingFlags.CreateInstance
+					         | BindingFlags.Public | BindingFlags.Instance, null, 
+						         new object[] { new MemoryStream (buffer) }, culture);
+				}
+				else
+				{
+					res = new Bitmap(new MemoryStream (buffer));
+					var bmp = res as System.Drawing.Bitmap;
+					if (bmp.NativeObject == IntPtr.Zero)
+					{
+						IntPtr imagePtr;
+
+						GDIPlus.GdiPlusStreamHelper sh = new GDIPlus.GdiPlusStreamHelper (new MemoryStream (buffer), true);
+						Status status = GDIPlus.GdipLoadImageFromDelegate_linux (sh.GetHeaderDelegate, sh.GetBytesDelegate,
+							sh.PutBytesDelegate, sh.SeekDelegate, sh.CloseDelegate, sh.SizeDelegate, out imagePtr);
+						GDIPlus.CheckStatus (status);
+					}
+				}
+				return res;
 			}
 
 			public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType) {

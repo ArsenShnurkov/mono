@@ -186,14 +186,14 @@ namespace System.Drawing.Imaging {
 		}
 
 		
-		[CLSCompliant(false)]
+		//[CLSCompliant(false)]
 		public byte[][] SignatureMasks 
 		{
 			get { return signatureMasks; }
 			set { signatureMasks = value; }
 		}
 
-		[CLSCompliant(false)]
+		//[CLSCompliant(false)]
 		public byte[][] SignaturePatterns 
 		{
 			get { return signaturePatterns; }

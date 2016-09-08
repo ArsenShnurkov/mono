@@ -44,7 +44,7 @@ namespace System.Drawing
 {
 [Serializable]
 [ComVisible (true)]
-[Editor ("System.Drawing.Design.ImageEditor, " + Consts.AssemblySystem_Drawing_Design, typeof (System.Drawing.Design.UITypeEditor))]
+//[Editor ("System.Drawing.Design.ImageEditor, " + Consts.AssemblySystem_Drawing_Design, typeof (System.Drawing.Design.UITypeEditor))]
 [TypeConverter (typeof(ImageConverter))]
 [ImmutableObject (true)]
 public abstract class Image : MarshalByRefObject, IDisposable , ICloneable, ISerializable 
@@ -141,14 +141,14 @@ public abstract class Image : MarshalByRefObject, IDisposable , ICloneable, ISer
 		return LoadFromStream (stream, false);
 	}
 
-	[MonoLimitation ("useEmbeddedColorManagement  isn't supported.")]
+	//[MonoLimitation ("useEmbeddedColorManagement  isn't supported.")]
 	public static Image FromStream (Stream stream, bool useEmbeddedColorManagement)
 	{
 		return LoadFromStream (stream, false);
 	}
 
 	// See http://support.microsoft.com/default.aspx?scid=kb;en-us;831419 for performance discussion	
-	[MonoLimitation ("useEmbeddedColorManagement  and validateImageData aren't supported.")]
+	//[MonoLimitation ("useEmbeddedColorManagement  and validateImageData aren't supported.")]
 	public static Image FromStream (Stream stream, bool useEmbeddedColorManagement, bool validateImageData)
 	{
 		return LoadFromStream (stream, false);

@@ -92,8 +92,7 @@ Options:
 			return new ResourceReader (stream);
 		case ".resx":
 			LoadResX ();
-			IResourceReader reader = (IResourceReader) Activator.CreateInstance (
-				resxr, new object[] {stream});
+			IResourceReader reader = new ResXResourceReader(stream);
 			if (useSourcePath) { // only possible on 2.0 profile, or higher
 				PropertyInfo p = reader.GetType ().GetProperty ("BasePath",
 					BindingFlags.Public | BindingFlags.Instance);
@@ -128,20 +127,40 @@ Options:
 	static int CompileResourceFile (string sname, string dname, bool useSourcePath) {
 		FileStream source = null;
 		FileStream dest = null;
-		IResourceReader reader = null;
+		IResourceReader reader = null; // System.Resources.ResXResourceReader
 		IResourceWriter writer = null;
 
 		try {
 			source = new FileStream (sname, FileMode.Open, FileAccess.Read);
-			reader = GetReader (source, sname, useSourcePath);
+			reader = GetReader (source, sname, useSourcePath); // System.Resources.ResourceReader
+			List<DictionaryEntry> entries = new List<DictionaryEntry>();
+			foreach (DictionaryEntry e in reader) {
+				entries.Add(e);
+			}
 
 			dest = new FileStream (dname, FileMode.Create, FileAccess.Write);
 			writer = GetWriter (dest, dname);
 
 			int rescount = 0;
-			foreach (DictionaryEntry e in reader) {
+			foreach (DictionaryEntry e in entries) {
 				rescount++;
 				object val = e.Value;
+				if (e.Value == null)
+				{
+					Console.WriteLine("null Value: {0}", e.Key);
+				}
+				if (e.Value is System.Drawing.Bitmap)
+				{
+					// https://msdn.microsoft.com/ru-ru/library/windows/desktop/ms630810%28v=vs.85%29.aspx
+					// wiaFormatPNG	{B96B3CAF-0728-11D3-9D7B-0000F81EF32E} FormatID for the PNG format.
+					// https://ru.wikipedia.org/wiki/Windows_Image_Acquisition
+					var wiaFormatPNG_Guid = new Guid("B96B3CAF-0728-11D3-9D7B-0000F81EF32E");
+					var bmp = e.Value as System.Drawing.Bitmap;
+					if (bmp.RawFormat != System.Drawing.Imaging.ImageFormat.Png && bmp.RawFormat.Guid != wiaFormatPNG_Guid)
+					{
+						Console.WriteLine("non png image: {0}, guid = {2}", e.Key, bmp.RawFormat.Guid.ToString());
+					}
+				}
 				if (val is string)
 					writer.AddResource ((string)e.Key, (string)e.Value);
 				else
@@ -192,6 +211,10 @@ Options:
 	}
 	
 	static int Main (string[] args) {
+		var b = new System.Drawing.Bitmap ("/var/calculate/remote/distfiles/egit-src/NClass.git/src/DiagramEditor/Resources/enum_item.png");
+		if (b.NativeObject == IntPtr.Zero) {
+			return -1;
+		}
 		bool compileMultiple = false;
 		bool useSourcePath = false;
 		ArrayList inputFiles = new ArrayList ();
